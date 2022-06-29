@@ -1,0 +1,33 @@
+﻿@if (Session["Userrole"] as string == "Admin")
+{
+<ul class="nav navbar-nav drop-item">
+    <li class="nav-link">
+        Sản phẩm
+        <ul class="drop-item-content">
+            <li>@Html.ActionLink("Sản phẩm", "Index", "SanPham", null, new { @class = "nav-link text-dark" })</li>
+            <li>@Html.ActionLink("Thể loại", "Index", "TheLoai", null, new { @class = "nav-link text-dark" })</li>
+            <li>@Html.ActionLink("Danh mục", "Index", "DanhMuc", null, new { @class = "nav-link text-dark" })</li>
+            <li>@Html.ActionLink("Xuất xứ", "Index", "XuatXu", null, new { @class = "nav-link text-dark" })</li>
+            <li>@Html.ActionLink("Nơi bán", "Index", "NoiBan", null, new { @class = "nav-link text-dark" })</li>
+            <li>@Html.ActionLink("Thương hiệu", "Index", "ThuongHieu", null, new { @class = "nav-link text-dark" })</li>
+        </ul>
+    </li>
+    <li class="nav-link">
+        User
+        <ul class="drop-item-content">
+            <li>@Html.ActionLink("Người dùng", "Index", "NguoiDung", null, new { @class = "nav-link text-dark" })</li>
+            <li>@Html.ActionLink("Vai trò", "Index", "VaiTro", null, new { @class = "nav-link text-dark" })</li>
+        </ul>
+    </li>
+    <li>@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "nav-link text-dark" })</li>
+</ul>
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link text-dark" })</li>
+        <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link text-dark" })</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link text-dark" })</li>
+        <li>@Html.ActionLink("Danh sách sản phẩm", "DanhSach", "SanPham", null, new { @class = "nav-link text-dark" })</li>
+    </ul>
+}

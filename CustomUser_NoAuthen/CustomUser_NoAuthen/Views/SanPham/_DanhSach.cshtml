@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CustomUser_NoAuthen.Models.SanPham>
+@{ int count = 0; int len = Model.Count(); bool isFull = false; }
+@for (int i = 0; i < 13; i++)
+{
+    <div class="row">
+        @for (int j = 0; j < 4; j++)
+        {
+            int n = i * 2 + j + count * 2;
+            if (n >= len) { isFull = true; break; }
+            var p = Model.ElementAt(n);
+
+            @*<div class="col-lg-3 position-absolute">
+                <a href="#">Test</a>
+            </div>*@
+            <div class="col-lg-3 position-relative">
+                <div class="position-absolute bg-light rounded-circle"
+                     style="top: 0; right: 1rem; width: 2rem">
+                    <a href="@Url.Action("Insert", "Order", new { returnUrl = Request.Url.AbsoluteUri, productId = p.ProductId })">
+                        <img src="~/Images/cart-shopping-solid.svg" alt="Alternate Text" />
+                    </a>
+                </div>
+                <a href="@Url.Action("ChiTiet", "SanPham", new { id =  p.ProductId })">
+                    <div class="hover-shadow rounded px-2 py-2">
+                        <div>
+                            @{ string path = "~/Images/P_Images/" + p.Thumnail; }
+                            <img class="d-block mx-auto center-crop w-90 as-square" src=@Url.Content(path) alt="Error" />
+                        </div>
+                        <div class="linetext-2 my-2 text-justify" style="height:3em;">
+                            <span>@Html.DisplayFor(modelItem => p.Name)</span>
+                        </div>
+                        <div class="d-flex my-2">
+                            <div></div>
+                            <div>Đã bán: @Html.DisplayFor(modelItem => p.Sold)</div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3">
+                                <b>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => p.Price).ToString())).Replace(',', '.') <u>đ</u></b>
+                            </div>
+                            @if (p.Discount > 0)
+                            {
+                                <div class="text-danger border border-danger px-2">-@Html.DisplayFor(modelItem => p.Discount)%</div>
+                            }
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @*<a class="col-lg-3" href="@Url.Action("ChiTiet", "SanPham", new { id =  p.ProductId })">
+                <div class="hover-shadow rounded px-2 py-2">
+                    <div>
+                        @{ string path = "~/Images/P_Images/" + p.Thumnail; }
+                        <img class="d-block mx-auto center-crop w-90 as-square" src=@Url.Content(path) alt="Error" />
+                    </div>
+                    <div class="linetext-2 my-2 text-justify" style="height:3em;">
+                        <span>@Html.DisplayFor(modelItem => p.Name)</span>
+                    </div>
+                    <div class="d-flex my-2">
+                        <div></div>
+                        <div>Đã bán: @Html.DisplayFor(modelItem => p.Sold)</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                            <b>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => p.Price).ToString())).Replace(',', '.') <u>đ</u></b>
+                        </div>
+                        @if (p.Discount > 0)
+                        {
+                            <div class="text-danger border border-danger px-2">-@Html.DisplayFor(modelItem => p.Discount)%</div>
+                        }
+                    </div>
+                </div>
+            </a>*@
+        }
+    </div>
+    count++;
+    if (isFull) { break; }
+}

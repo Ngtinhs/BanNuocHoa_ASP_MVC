@@ -1,0 +1,103 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, a:hover {
+    color: black;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+input[name=order_quantity]:checked {
+    counter-increment: checked;
+}
+
+.order_quantity_checked::after {
+    content: ' ' counter(order_quantity)
+}
+
+.container div.row {
+    background: white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%) !important;
+}
+
+.as-square {
+    aspect-ratio: 1;
+}
+
+.center-crop {
+    object-fit: cover;
+}
+
+.in-de-crement {
+    cursor: pointer;
+}
+
+/* Text Align */
+.text-justify {
+    text-align: justify;
+}
+
+/* Line Empty Text */
+.linetext-2, .linetext-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.linetext-2 {
+    -webkit-line-clamp: 2;
+}
+
+.linetext-3 {
+    -webkit-line-clamp: 3;
+}
+
+/* Width Percentage */
+.w-30 {
+    width: 30% !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.drop-item ul {
+    padding: 0;
+    list-style-type: none;
+    position: absolute;
+    display: none;
+    top: 2.5rem;
+    background: white;
+}
+
+.drop-item li:hover .drop-item-content {
+    display: block;
+}
+
+.drop-item li li:hover {
+    background: #ddd;
+}

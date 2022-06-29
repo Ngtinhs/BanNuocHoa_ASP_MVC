@@ -1,0 +1,21 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <ul class="nav navbar-nav float-lg-end">
+        @if (Session["Userrole"] as string == "Admin")
+        {
+            <li>@Html.ActionLink("Logout", "Logout", "Authen", null, new { @class = "nav-link text-dark" })</li>
+        }
+        else
+        {
+            <li class="nav-link text-danger">Xin chào, @Session["Username"]</li>
+            <li>@Html.ActionLink("Logout", "Logout", "Authen", null, new { @class = "nav-link text-dark" })</li>
+        }
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav float-lg-end">
+        <li>@Html.ActionLink("Register", "Register", "Authen", null, new { @class = "nav-link text-dark" })</li>
+        <li>@Html.ActionLink("Login", "Login", "Authen", null, new { @class = "nav-link text-dark" })</li>
+    </ul>
+}

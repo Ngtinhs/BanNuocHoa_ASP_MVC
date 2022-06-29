@@ -1,0 +1,23 @@
+﻿@using CustomUser_NoAuthen.Models
+@model NguoiDung
+@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<h2>Login</h2>
+<div class="container">
+    @Html.ValidationMessage("CredentialError", new { style = "color:red" })
+    @using (Html.BeginForm("LoginSubmit", "Authen", FormMethod.Post))
+    {
+        <div class="row">
+            @Html.LabelFor(c => c.Username, new { @class = "col-lg-1" })
+            @Html.TextBoxFor(x => x.Username, new { @class = "col-lg-2" })
+            @Html.ValidationMessageFor(x => x.Username)
+        </div>
+        <div class="row">
+            @Html.LabelFor(c => c.Password, new { @class = "col-lg-1" })
+            @Html.PasswordFor(x => x.Password, new { @class = "col-lg-2" })
+        </div>
+        <input type="submit" name="btnSubmit" value="Login" />
+    }
+</div>

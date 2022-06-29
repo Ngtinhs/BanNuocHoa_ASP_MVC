@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CustomUser_NoAuthen.Models.ThanhToanNamViewModel>
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h3>Test Amin</h3>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    { 
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <div>Năm: @item.YearPay</div>
+                <div class="d-flex">
+                    <div class="mx-4">Số lượng: @String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => item.YearQuantity).ToString())).Replace(',', '.')</div>
+                    <div>Số tiền: @String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => item.YearTotal).ToString())).Replace(',', '.')</div>
+                </div>
+            </div>
+            @foreach (var inner in item.months)
+            { 
+                <div class="px-4 my-2">
+                    <div class="d-flex justify-content-between">
+                        <div>Tháng: @inner.MonthPay</div>
+                        <div class="d-flex">
+                            <div class="mx-4">Số lượng: @String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => inner.MonthQuantity).ToString())).Replace(',', '.')</div>
+                            <div>Số tiền: @String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => inner.MonthTotal).ToString())).Replace(',', '.')</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

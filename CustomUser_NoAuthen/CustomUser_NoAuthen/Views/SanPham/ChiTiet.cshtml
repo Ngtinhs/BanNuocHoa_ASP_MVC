@@ -1,0 +1,91 @@
+﻿@model CustomUser_NoAuthen.Models.ChiTietSanPhamViewModel
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+}
+
+<div class="row px-2 py-4">
+    <div class="col-lg-5">
+        <div>
+            @{ string path = "~/Images/P_Images/" + Model.ProductThumbnail; }
+            <img class="d-block mx-auto center-crop w-100 as-square" src=@Url.Content(path) alt="Error" />
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div>Thương hiệu: @Model.ProductMark</div>
+        <div class="h3 linetext-3 text-justify" style="height:3.6em;">@Model.ProductName</div>
+        <div class="my-2">
+            <div></div>
+            <div>Đã bán @String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => Model.ProductSold).ToString())).Replace(',', '.')</div>
+        </div>
+        <div class="d-flex align-items-center my-2">
+            @{
+                int price = int.Parse(Model.ProductPrice.ToString());
+                int discount = int.Parse(Model.ProductDiscount.ToString());
+                int total = price;
+                if (discount > 0)
+                {
+                    total = price - price * discount / 100;
+                    <div class="text-danger me-3 display-5">
+                                    <b>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => total).ToString())).Replace(',', '.') <u>đ</u></b>
+                    </div>
+                    <div>
+                        <div class="text-muted">
+                            <del>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => price).ToString())).Replace(',', '.') <u>đ</u></del>
+                        </div>
+                        <div class="text-danger text-right">
+                            <span class="border border-danger px-2">-@discount%</span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-dark display-5">
+                        <b>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => total).ToString())).Replace(',', '.') <u>đ</u></b>
+                    </div>
+                }
+            }
+        </div>
+        @*<div class="d-flex my-2">
+            <div class="me-3">Số lượng</div>
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="border border-secondary border-end-0 px-2 rounded-start in-de-crement">-</div>
+                <div class="border border-secondary px-3 input-crement">1</div>
+                <div class="border border-secondary border-start-0 px-2 rounded-end in-de-crement">+</div>
+            </div>
+        </div>*@
+        <div class="d-flex my-2">
+            <button class="btn btn-danger w-50" type="button" onclick="location.href='@Url.Action("Insert", "Order", new { returnUrl = Request.Url.AbsoluteUri, productId = Model.ProductId })'">Thêm vào giỏ hàng</button>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div>Thông tin chi tiết</div>
+    <div>
+        <table class="w-100">
+            <colgroup>
+                <col span="1" class="bg-light" />
+            </colgroup>
+            <tr>
+                <th class="w-25">Thương hiệu</th>
+                <td>@Model.ProductMark</td>
+            </tr>
+            <tr>
+                <th>Xuất xứ</th>
+                <td>@Model.ProductOri</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div>Mô tả sản phẩm</div>
+    <div>@Model.ProductDescription</div>
+</div>
+<br />
+@*<div class="">
+    <div class="row">
+        <div>Đánh giá - Nhận xét từ khách hàng</div>
+    </div>
+    <div class="row"></div>
+</div>*@

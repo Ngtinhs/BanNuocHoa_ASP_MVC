@@ -1,0 +1,65 @@
+﻿@if (Session["Userrole"] as string == "Admin")
+{
+    <div class="navbar navbar-expand-sm bg-light">
+        <div class="container">
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                @Html.Partial("_LinkRolePartial")
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="bg-primary">
+        <div class="row py-3 d-flex align-items-center w-100">
+            <div class="col-lg-3 d-flex justify-content-center">
+                @{ string path = "~/Images/titles.png"; }
+                <img class="w-50" src=@Url.Content(path) alt="Error" />
+            </div>
+            <div class="col-lg-6 my-3">
+                <div class="position-relative mx-auto" style="width: inherit;">
+                    <input class="form-control" id="input_search" style="max-width: none !important;" type="search" placeholder="Tìm kiếm tên sản phẩm" aria-label="Search">
+                    @*<button class="btn btn-info" type="submit">Search</button>*@
+                    <div id="search_bar">
+                        @Html.Partial("_SearchBar")
+                    </div>
+                    @*@Html.Partial("_SearchBar")*@
+                    @*<div class="bg-white position-absolute w-100" style="height: 200px; z-index: 50;">test</div>*@
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="@Url.Action("Index", "Order")" class="align-items-center d-flex position-relative">
+                        @if (Session["Order"] != null)
+                        {
+                            <div class="position-absolute bg-danger text-center text-white rounded-circle"
+                                 style="width: 2rem; height: 2rem; padding-top: 0.2rem; top: -0.5rem; left: 2rem">@Session["Order"]</div>
+                        }
+                        else
+                        {
+                            <div class="position-absolute bg-danger text-center text-white rounded-circle"
+                                 style="width: 2rem; height: 2rem; padding-top: 0.2rem; top: -0.5rem; left: 2rem">0</div>
+                        }
+                        <div class="me-2" style="width: 3.5rem;">
+                            @{ path = "~/Images/cart-shopping-solid.svg"; }
+                            <img class="" src=@Url.Content(path) alt="Alternate Text" />
+                        </div>
+                        <div class="text-white">
+                            <div>Giỏ</div>
+                            <div>hàng</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-expand-sm bg-light">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @Html.Partial("_LinkRolePartial")
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </div>
+}

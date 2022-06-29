@@ -1,0 +1,53 @@
+﻿@model CustomUser_NoAuthen.Models.DanhSachSanPhamViewModel
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+}
+
+@*<h2>DanhSach</h2>*@
+<div class="row" id="DanhSachSanPham">
+    <div class="col-lg-3">
+        <div class="">
+            <h5>Danh mục sản phẩm</h5>
+            @foreach (var item in Model.Types)
+            {
+                <div>@item.Name</div>
+            }
+        </div>
+        <hr />
+        <div>
+            <h5>Nơi bán</h5>
+            @foreach (var item in Model.SellPlaces)
+            {
+                <div class="d-flex align-items-center">
+                    @Html.CheckBox(item.SellId + "_SellPlaces", new { @class = "mx-2 checked-box" })
+                    <div>@item.Name</div>
+                </div>
+            }
+        </div>
+        <hr />
+        <div>
+            <h5>Thương hiệu</h5>
+            @foreach (var item in Model.Trademarks)
+            {
+                <div class="d-flex align-items-center">
+                    @Html.CheckBox(item.MarkId + "_TradeMarks", new { @class = "mx-2 checked-box" })
+                    <div>@item.Name</div>
+                </div>
+            }
+        </div>
+        <hr />
+        <div>
+            <h5>Xuất xứ</h5>
+            @foreach (var item in Model.Origins)
+            {
+                <div class="d-flex align-items-center">
+                    @Html.CheckBox(item.OriginId + "_Origins", new { @class = "mx-2 checked-box" })
+                    <div>@item.Name</div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-9" id="DanhSachSanPhamPartial">
+        @Html.Partial("_DanhSach", Model.Products)
+    </div>
+</div>

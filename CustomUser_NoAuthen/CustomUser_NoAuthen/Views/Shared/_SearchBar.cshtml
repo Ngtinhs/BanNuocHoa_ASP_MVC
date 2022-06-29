@@ -1,0 +1,12 @@
+﻿@if (Session["SearchBar"] != null)
+{
+    var list = (IEnumerable<CustomUser_NoAuthen.Models.SanPham>)Session["SearchBar"];
+    <div class="bg-white position-absolute w-100 p-2 rounded" style="z-index: 50;">
+        @foreach (var item in list)
+        {
+            <a href="@Url.Action("ChiTiet", "SanPham", new { id =  item.ProductId })">
+                <div class="my-2" style="text-overflow: ellipsis;">@item.Name</div>
+            </a>
+        }
+    </div>
+}

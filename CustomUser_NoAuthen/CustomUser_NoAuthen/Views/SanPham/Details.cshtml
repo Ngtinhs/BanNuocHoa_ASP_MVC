@@ -1,0 +1,114 @@
+﻿@model CustomUser_NoAuthen.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DanhMuc.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanhMuc.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiBan.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiBan.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TheLoai.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheLoai.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThuongHieu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThuongHieu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XuatXu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XuatXu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateInsert)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateInsert)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sold)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Thumnail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Thumnail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

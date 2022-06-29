@@ -1,0 +1,114 @@
+﻿@model CustomUser_NoAuthen.Models.GioHangViewModel
+@{
+    ViewBag.Title = "Giỏ hàng";
+}
+
+<h2>Giỏ hàng</h2>
+<div class="d-flex">
+    <div class="col-lg-9 pe-5">
+        <div class="row">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center">Tất cả sản phẩm</div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="d-flex justify-content-center">Đơn giá</div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="d-flex align-items-center justify-content-center">Số lượng</div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="d-flex justify-content-center">Thành tiền</div>
+                </div>
+                <div class="me-2" style="width:2%;">
+                    <img src=@Url.Content("~/Images/trash-solid.svg") alt="Alternate Text" />
+                </div>
+            </div>
+        </div>
+        <br />
+        @if (Model.chiTiets != null)
+        {
+            foreach (var item in Model.chiTiets)
+            {
+                int price, discount, total; string path;
+                <div class="row">
+                    <div class="d-flex align-items-center justify-content-between my-3">
+                        @{
+                            price = int.Parse(item.ProductPrice.ToString());
+                            discount = int.Parse(item.ProductDiscount.ToString());
+                            total = price;
+                        }
+                        <div class="col-lg-4">
+                            <div class="d-flex align-items-center">
+                                @{ path = "~/Images/P_Images/" + item.ProductThumbnail; }
+                                <img class="me-2 center-crop w-30 as-square" style="" src=@Url.Content(path) alt="Error" />
+                                <div class="linetext-3" style="height:4.5em;">@item.ProductName</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="d-flex justify-content-center">
+                                @if (discount > 0)
+                                {
+                                    total = price - price * discount / 100;
+                                    <div>
+                                        <div class="text-muted">
+                                            <del>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => price).ToString())).Replace(',', '.') <u>đ</u></del>
+                                        </div>
+                                        <div class="text-dark">
+                                            <b>@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => total).ToString())).Replace(',', '.') <u>đ</u></b>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                            <b class="text-dark">@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => total).ToString())).Replace(',', '.') <u>đ</u></b>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="border border-secondary border-end-0 px-2 rounded-start in-de-crement"
+                                     onclick="location.href='@Url.Action("EditTotal", "Order", new { productId = item.ProductId, altTotal = -1 })'">-</div>
+                                <div class="border border-secondary px-3 input-crement">@String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => item.ProductQuantity).ToString())).Replace(',', '.')</div>
+                                <div class="border border-secondary border-start-0 px-2 rounded-end in-de-crement"
+                                     onclick="location.href='@Url.Action("EditTotal", "Order", new { productId = item.ProductId, altTotal = 1 })'">+</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="d-flex justify-content-center text-danger">
+                                <b>@int.Parse(item.ProductTotalEach.ToString()).ToString("N0") <u>đ</u></b>
+                            </div>
+                        </div>
+                        <div class="me-2" style="width:2%;">
+                            <a href="@Url.Action("Delete", "Order", new { productId = item.ProductId })">
+                                @{ path = "~/Images/trash-solid.svg"; }
+                                <img src=@Url.Content(path) alt="Alternate Text" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-lg-3">
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <div>Giao tới: @Model.UserAddress</div>
+                <div class="text-primary">Thay đổi</div>
+            </div>
+            <hr />
+            <div>
+                <strong>@Model.UserName - @Model.UserPhone</strong>
+            </div>
+            @*<div class="linetext-2" style="height:3em;"></div>*@
+        </div>
+        <br />
+        <div class="row">
+            <div class="px-2">Tổng thành tiền: @String.Format("{0:n0}", int.Parse(Html.DisplayFor(modelItem => Model.TotalPrice).ToString())).Replace(',', '.') đ</div>
+        </div>
+        <br />
+        <div class="row py-0">
+            <button class="btn btn-danger w-100" type="button" onclick="location.href='@Url.Action("Index", "Payment", new { returnUrl = Request.Url.AbsoluteUri, gioHangView = Model.ToString() })'">Mua Hàng</button>
+        </div>
+    </div>
+</div>
